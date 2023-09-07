@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type f -printf "%T@ %p\n" | sort -r |  head
+find . -type f  -exec ls -t1 {} + |  head | sort -n  
