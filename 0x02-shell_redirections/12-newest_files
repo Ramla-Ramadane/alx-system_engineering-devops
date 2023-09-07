@@ -1,2 +1,2 @@
 #!/bin/bash
-find . -type f  -exec ls -t1 {} + |  head | sort -n | xargs -n1 basename  
+find . -type f  -exec ls -t1 {} + |  head | sort -r | xargs -n1 basename  
