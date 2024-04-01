@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# install load balancer
+
+sudo apt-get -y update
+sudo apt-get -y install 'haproxy'
+cat > '/etc/haproxy/haproxy.cfg' << EOF
+frontend wolfhopkins.tech
+	bind *:80
+	stats uri /haproxy?stats
+	default_backend web_servers
+backend web_servers
+	balance roundrobin
+	server web-01 34.75.118.37
+	server web-02 35.229.81.10
+EOF
+service haproxy reload
+service haproxy restart
