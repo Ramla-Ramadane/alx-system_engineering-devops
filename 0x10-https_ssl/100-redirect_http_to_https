@@ -22,9 +22,7 @@ frontend www-http
     bind *:80
     mode http
     option forwardfor
-    reqadd X-Forwarded-Proto:\ http
-    acl is_letsencrypt path_beg /.well-known/acme-challenge/
-    http-request redirect scheme https unless is_letsencrypt
+    http-request redirect scheme https code 301 if !{ ssl_fc }
 
 frontend www-https
     bind *:443 ssl crt /etc/haproxy/certs/www.bdbnb.site.pem
